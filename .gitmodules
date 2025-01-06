@@ -1,0 +1,18 @@
+[submodule "driver/ADS1262"]
+	path = driver/ADS1262
+	url = https://github.com/bassem-mostafa/ADC_ADS1262.git
+[submodule "driver/ATMEGA2560"]
+	path = driver/ATMEGA2560
+	url = https://github.com/bassem-mostafa/ADC_ATMEGA2560.git
+[submodule "port/Power_Analyzer"]
+	path = port/Power_Analyzer
+	url = https://github.com/bassem-mostafa/ADC_Power_Analyzer.git
+[submodule "driver/STM32G491MET6"]
+	path = driver/STM32G491MET6
+	url = https://github.com/bassem-mostafa/ADC_STM32G491MET6.git
+[submodule "driver/STM32L496VGT6P"]
+	path = driver/STM32L496VGT6P
+	url = https://github.com/bassem-mostafa/ADC_STM32L496VGT6P.git
+[submodule "port/Stub"]
+	path = port/Stub
+	url = https://github.com/bassem-mostafa/ADC_Stub.git
