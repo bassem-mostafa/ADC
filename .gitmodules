@@ -16,3 +16,6 @@
 [submodule "port/Stub"]
 	path = port/Stub
 	url = https://github.com/bassem-mostafa/ADC_Stub.git
+[submodule "driver/INA228"]
+	path = driver/INA228
+	url = https://github.com/bassem-mostafa/INA228.git
