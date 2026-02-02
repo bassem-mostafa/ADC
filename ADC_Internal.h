@@ -56,24 +56,24 @@ extern "C"
     // #############################################################################
 
     #ifndef ADC_TIM
-        #define ADC_TIM TIM_1
+        #define ADC_TIM PLATFORM_DEFAULT_TIM
     #endif
 
     #ifndef ADC_LOG
-        #define ADC_LOG LOG_1
+        #define ADC_LOG PLATFORM_DEFAULT_LOG
     #endif
 
     #define ADC_NAME       "ADC"
     #define ADC_LOG_PREFIX UTIL_StringConcatenateConstant( ADC_NAME, "> " )
 
     #ifdef DEBUG
-        #define ADC_Raw( Level, Format, ... ) ADC_LOG_Raw( Level, Format, ##__VA_ARGS__ )
-        #define ADC_Trace( Format, ... )      ADC_LOG_Trace( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
-        #define ADC_Debug( Format, ... )      ADC_LOG_Debug( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
-        #define ADC_Info( Format, ... )       ADC_LOG_Info( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
-        #define ADC_Warning( Format, ... )    ADC_LOG_Warning( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
-        #define ADC_Error( Format, ... )      ADC_LOG_Error( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
-        #define ADC_Fatal( Format, ... )      ADC_LOG_Fatal( UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Raw( Level, Format, ... ) LOG_Raw( ADC_LOG, Level, Format, ##__VA_ARGS__ )
+        #define ADC_Trace( Format, ... )      LOG_Trace( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Debug( Format, ... )      LOG_Debug( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Info( Format, ... )       LOG_Info( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Warning( Format, ... )    LOG_Warning( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Error( Format, ... )      LOG_Error( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
+        #define ADC_Fatal( Format, ... )      LOG_Fatal( ADC_LOG, UTIL_StringConcatenateConstant( ADC_LOG_PREFIX, Format ), ##__VA_ARGS__ )
     #else
         #define ADC_Raw( Level, Format, ... )
         #define ADC_Trace( Format, ... )
@@ -92,7 +92,7 @@ extern "C"
 
     typedef struct ADC_Instance
     {
-        ADC_t ADC;
+        ADC_t ADCx;
 
         union
         {
@@ -101,39 +101,20 @@ extern "C"
         };
     } ADC_Instance_t;
 
-    typedef struct ADC_Context
-    {
-        ADC_Instance_t Instance[ ADC_NUMBER_OF_INSTANCES ];
-    } ADC_Context_t;
-
     // #############################################################################
     // #### Public Method(s) #######################################################
     // #############################################################################
 
-    LOG_Status_t ADC_LOG_Raw( LOG_Level_t LOG_Level, LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Trace( LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Debug( LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Info( LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Warning( LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Error( LOG_Format_t LOG_Format, ... );
-    LOG_Status_t ADC_LOG_Fatal( LOG_Format_t LOG_Format, ... );
-
-    ADC_Status_t ADC_Instance_IsValid( ADC_Instance_t * ADC_Instance );
-
     // The following APIs MUST be provided by the port
     ADC_Status_t ADC_IsValid( ADC_t ADC );
 
-    ADC_Status_t ADC_Instance_Initialize( ADC_Instance_t * ADC_Instance );
-    ADC_Status_t ADC_Instance_Cycle( ADC_Instance_t * ADC_Instance );
-    ADC_Status_t ADC_Instance_DeInitialize( ADC_Instance_t * ADC_Instance );
-
-    // TODO Add More APIs
+    ADC_Status_t ADC_Instance_Initialize( ADC_Instance_t * Instance );
+    ADC_Status_t ADC_Instance_Cycle( ADC_Instance_t * Instance );
+    ADC_Status_t ADC_Instance_DeInitialize( ADC_Instance_t * Instance );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
     // #############################################################################
-
-    extern ADC_Context_t ADC_Context;
 
     // #############################################################################
     // #### File Guard #############################################################

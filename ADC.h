@@ -54,6 +54,13 @@
  *  @{
  */
 
+/**
+ *  @defgroup Platform_ADC_Driver Driver
+ *
+ *  @{
+ *  @}
+ */
+
 #ifndef ADC_H_
     #define ADC_H_
 
@@ -76,28 +83,61 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
+    /**
+     *  @brief ADC Operation Status
+     *
+     *  @enum ADC_Status_t
+     */
     typedef enum ADC_Status
     {
-        ADC_Status_Success = 0,
-        ADC_Status_ArgumentInvalid,
-        ADC_Status_NotSupported,
-        ADC_Status_Error,
-        ADC_Status_Busy,
-        ADC_Status_Timeout,
+        ADC_Status_Success = 0,     ///< Success
+        ADC_Status_ArgumentInvalid, ///< Argument Invalid
+        ADC_Status_NotSupported,    ///< Not Supported
+        ADC_Status_Error,           ///< General Error
+        ADC_Status_Busy,            ///< Busy
+        ADC_Status_Timeout,         ///< Timeout
     } ADC_Status_t;
 
     // #############################################################################
     // #### Public Method(s) #######################################################
     // #############################################################################
 
-    ADC_Status_t ADC_Initialize( void );
-    ADC_Status_t ADC_Cycle( void );
-    ADC_Status_t ADC_DeInitialize( void );
+    /**
+     *  @brief Initialize ADC peripheral
+     *
+     *  @note MUST BE called before using any ADC API
+     *
+     *  @param[in] ADCx Peripheral
+     *
+     *  @return ADC_Status_t
+     */
+    ADC_Status_t ADC_Initialize( ADC_t ADCx );
+
+    /**
+     *  @brief Cycle ADC peripheral
+     *
+     *  @param[in] ADCx Peripheral
+     *
+     *  @return ADC_Status_t
+     */
+    ADC_Status_t ADC_Cycle( ADC_t ADCx );
+
+    /**
+     *  @brief De-Initialize ADC peripheral
+     *
+     *  @param[in] ADCx Peripheral
+     *
+     *  @return ADC_Status_t
+     */
+    ADC_Status_t ADC_DeInitialize( ADC_t ADCx );
 
     // #############################################################################
     // #### Public Variable(s) #####################################################
     // #############################################################################
 
+    /**
+     *  @brief Version
+     */
     extern const char ADC_VERSION[];
 
     // #############################################################################
@@ -112,6 +152,7 @@ extern "C"
 
 /**
  *  @}
+ *
  *  @}
  */
 
