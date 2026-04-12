@@ -88,7 +88,7 @@ extern "C"
     // #### Public Type(s) #########################################################
     // #############################################################################
 
-    typedef struct ADC_Instance_Context_t ADC_Instance_Context_t;
+    typedef struct ADC_InstanceContext_t ADC_InstanceContext_t;
 
     typedef struct ADC_Instance
     {
@@ -96,7 +96,7 @@ extern "C"
 
         union
         {
-            ADC_Instance_Context_t * Context;
+            ADC_InstanceContext_t * Context;
             ADC_ADS1262_Instance_t * ADS1262;
         };
     } ADC_Instance_t;
